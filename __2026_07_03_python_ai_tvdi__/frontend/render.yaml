@@ -6,4 +6,4 @@ services:
     staticPublishPath: ./dist
     envVars:
       - key: VITE_API_URL
-        value: https://2026-07-03-python-ai-tvdi.onrender.com
+        value: https://two0260724.onrender.com

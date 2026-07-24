@@ -5,7 +5,7 @@ type Values = { sepal_length: number; sepal_width: number; petal_length: number;
 type Prediction = { prediction_id: number; prediction_label: string; probabilities: Record<string, number> }
 type TrainResult = { status: string; accuracy: number; train_time: number; feature_importances: Record<string, number>; message: string }
 
-const API_URL = (import.meta.env.VITE_API_URL ?? 'https://2026-07-03-python-ai-tvdi.onrender.com').replace(/\/$/, '')
+const API_URL = (import.meta.env.VITE_API_URL ?? 'https://two0260724.onrender.com').replace(/\/$/, '')
 const initialValues: Values = { sepal_length: 5.1, sepal_width: 3.5, petal_length: 1.4, petal_width: 0.2 }
 const species: Record<string, { zh: string; color: string; soft: string; note: string }> = {
   setosa: { zh: '山鳶尾', color: '#0f766e', soft: '#ccfbf1', note: '花瓣短小，特徵十分鮮明。' },

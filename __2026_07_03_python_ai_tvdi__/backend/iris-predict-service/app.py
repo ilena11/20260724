@@ -9,6 +9,7 @@ if current_dir not in sys.path:
 
 import joblib
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.docs import get_swagger_ui_html
 import gradio as gr
 from pydantic import BaseModel, Field
@@ -433,6 +434,17 @@ demo.queue(default_concurrency_limit=10)
 
 # 1. 產生 Gradio 的 FastAPI 應用實例
 app = gr.routes.App.create_app(demo)
+
+# `api_app` only supplies routes.  CORS must be attached to this final Gradio
+# application so that requests from the separately deployed Vite site receive
+# the appropriate Access-Control-Allow-Origin header.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["*"],
+)
 
 # 2. 合併 API 路由：將 api_app 中的所有自訂 API 路由 (/predict, /train) 併入
 app.include_router(api_app.router)
